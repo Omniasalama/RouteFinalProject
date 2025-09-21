@@ -1,0 +1,223 @@
+<div class="h-full bg-white dark:bg-gray-900">
+  <div class="mx-auto">
+    <div class="flex justify-center px-6 py-12">
+      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <!-- Form Container -->
+        <div
+          class="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none"
+        >
+          <div class="heading text-center pt-6">
+            <h3
+              class="py-2 text-2xl font-bold text-gray-800 dark:text-white ml-28"
+            >
+              Address
+            </h3>
+          </div>
+
+          @if (errmess!='') {
+          <div
+            class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert"
+          >
+            <svg
+              class="shrink-0 inline w-4 h-4 me-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 
+                0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 
+                15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                1 0 0 1 0-2h2a1 1 0 0 1 1 
+                1v4h1a1 1 0 0 1 0 2Z"
+              />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">{{ errmess }}</span
+              >.
+            </div>
+          </div>
+          }
+
+          <form
+            class="max-w-sm mx-auto"
+            [formGroup]="addressForm"
+            (ngSubmit)="submit()"
+          >
+            <!-- details -->
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                formControlName="details"
+                type="text"
+                id="floating_mail"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-black focus:outline-none focus:ring-0 focus:border-black peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_mail"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-green-500 peer-focus:dark:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Details
+              </label>
+
+              @if (addressForm.controls['details'].errors &&
+              addressForm.controls['details'].touched) {
+              <div
+                class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 
+                       9.5A9.51 9.51 0 0 0 10 .5ZM9.5 
+                       4a1.5 1.5 0 1 1 0 3 
+                       1.5 1.5 0 0 1 0-3ZM12 
+                       15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                       1 0 0 1 0-2h2a1 1 0 0 1 1 
+                       1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <div>
+                  <span class="font-medium"
+                    >Ensure that these requirements are met:</span
+                  >
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if (addressForm.controls['details'].hasError('required')) {
+                    <li>Address Details is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              }
+            </div>
+            <!-- Phone -->
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                formControlName="phone"
+                type="text"
+                id="floating_mail"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-black focus:outline-none focus:ring-0 focus:border-black peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_mail"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-green-500 peer-focus:dark:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Phone
+              </label>
+
+              @if (addressForm.controls['phone'].errors &&
+              addressForm.controls['phone'].touched) {
+              <div
+                class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 
+                       9.5A9.51 9.51 0 0 0 10 .5ZM9.5 
+                       4a1.5 1.5 0 1 1 0 3 
+                       1.5 1.5 0 0 1 0-3ZM12 
+                       15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                       1 0 0 1 0-2h2a1 1 0 0 1 1 
+                       1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <div>
+                  <span class="font-medium"
+                    >Ensure that these requirements are met:</span
+                  >
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if (addressForm.controls['phone'].hasError('required')) {
+                    <li>Phone is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              }
+            </div>
+            <!-- city -->
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                formControlName="city"
+                type="text"
+                id="floating_mail"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-black focus:outline-none focus:ring-0 focus:border-black peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_mail"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-green-500 peer-focus:dark:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                City
+              </label>
+
+              @if (addressForm.controls['city'].errors &&
+              addressForm.controls['city'].touched) {
+              <div
+                class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 
+                       9.5A9.51 9.51 0 0 0 10 .5ZM9.5 
+                       4a1.5 1.5 0 1 1 0 3 
+                       1.5 1.5 0 0 1 0-3ZM12 
+                       15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                       1 0 0 1 0-2h2a1 1 0 0 1 1 
+                       1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <div>
+                  <span class="font-medium"
+                    >Ensure that these requirements are met:</span
+                  >
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if (addressForm.controls['city'].hasError('required')) {
+                    <li>City is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              }
+            </div>
+
+            <!-- Submit -->
+            <div class="text-center">
+              <button
+                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+              >
+                Proceed to Pay
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

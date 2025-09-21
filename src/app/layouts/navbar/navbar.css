@@ -1,0 +1,127 @@
+/* Active navigation link styles - all tabs get green text */
+.router-link-active {
+  color: #16a34a !important; /* green-600 */
+}
+
+/* Dark mode active navigation link styles */
+.dark .router-link-active {
+  color: #22c55e !important; /* green-500 */
+}
+
+/* Special styling for Home tab when it's active */
+a[routerLink="/home"].router-link-active {
+  background-color: #16a34a !important; /* green-600 */
+  color: white !important;
+}
+
+.dark a[routerLink="/home"].router-link-active {
+  background-color: #22c55e !important; /* green-500 */
+  color: white !important;
+}
+
+/* Mobile active state - all tabs get green background */
+@media (max-width: 768px) {
+  .router-link-active {
+    background-color: #16a34a !important; /* green-600 */
+    color: white !important;
+  }
+  
+  .dark .router-link-active {
+    background-color: #22c55e !important; /* green-500 */
+    color: white !important;
+  }
+}
+
+/* Desktop active state - Home gets special treatment, others get green text */
+@media (min-width: 768px) {
+  /* Default for all active tabs */
+  .router-link-active {
+    background-color: transparent !important;
+    color: #16a34a !important; /* green-600 */
+  }
+  
+  .dark .router-link-active {
+    background-color: transparent !important;
+    color: #22c55e !important; /* green-500 */
+  }
+  
+  /* Special styling for Home tab when active on desktop */
+  a[routerLink="/home"].router-link-active {
+    background-color: #16a34a !important; /* green-600 */
+    color: white !important;
+  }
+  
+  .dark a[routerLink="/home"].router-link-active {
+    background-color: #22c55e !important; /* green-500 */
+    color: white !important;
+  }
+}
+
+/* Hover effects for all navigation links */
+nav a:hover {
+  color: #16a34a !important; /* green-600 */
+  transition: color 0.2s ease;
+}
+
+.dark nav a:hover {
+  color: #22c55e !important; /* green-500 */
+  transition: color 0.2s ease;
+}
+
+/* Logo hover effect */
+nav a[routerLink="/home"]:hover {
+  color: #16a34a !important; /* green-600 */
+  transition: color 0.2s ease;
+}
+
+.dark nav a[routerLink="/home"]:hover {
+  color: #22c55e !important; /* green-500 */
+  transition: color 0.2s ease;
+}
+
+/* Cart and search button hover effects */
+nav button:hover {
+  color: #16a34a !important; /* green-600 */
+  transition: color 0.2s ease;
+}
+
+.dark nav button:hover {
+  color: #22c55e !important; /* green-500 */
+  transition: color 0.2s ease;
+}
+
+/* Sign out button hover effect */
+nav a[ng-reflect-router-link]:hover,
+nav a[ng-reflect-router-link=""]:hover {
+  color: #16a34a !important; /* green-600 */
+  transition: color 0.2s ease;
+}
+
+.dark nav a[ng-reflect-router-link]:hover,
+nav a[ng-reflect-router-link=""]:hover {
+  color: #22c55e !important; /* green-500 */
+  transition: color 0.2s ease;
+}
+
+/* Ensure proper specificity for active states */
+nav ul li a.router-link-active {
+  color: #16a34a !important; /* green-600 */
+}
+
+.dark nav ul li a.router-link-active {
+  color: #22c55e !important; /* green-500 */
+}
+
+/* Mobile menu active state */
+@media (max-width: 768px) {
+  nav ul li a.router-link-active {
+    background-color: #16a34a !important; /* green-600 */
+    color: white !important;
+    border-radius: 0.375rem; /* rounded-sm */
+  }
+  
+  .dark nav ul li a.router-link-active {
+    background-color: #22c55e !important; /* green-500 */
+    color: white !important;
+  }
+}

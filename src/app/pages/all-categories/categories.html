@@ -1,0 +1,27 @@
+<main class="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+  <section class="brands my-5">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch"
+    >
+      @for (cat of allCat ; track cat._id) {
+      <div
+        class="cat group relative overflow-hidden bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-5 flex flex-col justify-between text-center"
+      >
+          <!-- Image -->
+          <img
+            [src]="cat.image"
+            alt="{{ cat.name }}"
+            class="w-full h-40 object-contain mb-4"
+          />
+
+          <!-- Title -->
+          <h5
+            class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
+          >
+            {{ cat.name }}
+          </h5>
+      </div>
+      }
+    </div>
+  </section>
+</main>

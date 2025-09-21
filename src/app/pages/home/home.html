@@ -1,0 +1,87 @@
+<main class="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+  <section class="cat-slider py-80">
+    @if (categoriesLoading) {
+      <div class="flex space-x-4">
+        @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+          <div class="w-64">
+            <div class="h-64 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            <div class="h-6 bg-gray-200 dark:bg-gray-700 rounded mt-6 w-3/4 mx-auto"></div>
+          </div>
+        }
+      </div>
+    } @else {
+      <owl-carousel-o [options]="customOptions">
+        @for (categorie of categoriesList; track $index) {
+        <ng-template carouselSlide>
+          <div>
+            <img [src]="categorie.image" class="h-64" />
+            <h3 class="text-black mt-6 text-center font-semibold">
+              {{ categorie.name }}
+            </h3>
+          </div>
+        </ng-template>
+        }
+      </owl-carousel-o>
+    }
+  </section>
+  <section class="products my-5">
+    @if (productsLoading) {
+      <div class="grid sm:grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 hover:border hover:border-emerald-500 rounded-2xl p-8">
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track i) {
+          <app-skeleton type="product-card"></app-skeleton>
+        }
+      </div>
+    } @else {
+      <div
+        class="grid sm:grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 hover:border hover:border-emerald-500 rounded-2xl p-8"
+      >
+        @for (product of productList.slice(0, 12); track product._id) {
+      <div
+        class="product group relative overflow-hidden bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-5 flex flex-col justify-between text-center"
+      >
+        <!-- Image -->
+        <img
+          [src]="product.imageCover"
+          alt="{{ product.title }}"
+          class="w-full h-40 object-contain mb-4"
+        />
+
+        <!-- Category -->
+        <p class="text-green-600 text-sm font-medium mb-1">
+          {{ product.category.name }}
+        </p>
+
+        <!-- Title -->
+        <h5
+          class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
+        >
+          {{ product.title }}
+        </h5>
+
+        <!-- Bottom wrapper -->
+        <div class="mt-auto">
+          <!-- Price + Rating -->
+          <div
+            class="price-rating flex justify-between my-4 px-4 transition-opacity duration-500 group-hover:opacity-0"
+          >
+            <span>{{ product.price }} EGP</span>
+            <span>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              {{ product.ratingsAverage }}
+            </span>
+          </div>
+
+          <!-- Button (takes space, hidden until hover) -->
+          <button
+            class="cursor-pointer btn w-full mx-auto bg-green-400 hover:bg-green-700 text-white px-5 py-3 rounded font-medium transform translate-y-6 opacity-0 transition-all duration-700 ease-in-out group-hover:translate-y-0 group-hover:opacity-100"
+            (click)="addToCart(product._id)"
+          >
+            Add to cart
+          </button>
+        </div>
+        </div>
+        }
+      </div>
+    }
+  </section>
+</main>

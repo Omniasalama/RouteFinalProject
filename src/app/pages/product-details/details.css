@@ -1,0 +1,17 @@
+.product .btn {
+  transition: transform 0.5s, opacity 1s;
+  transform: translateY(120%);
+  -webkit-transform: translateY(120%);
+  -moz-transform: translateY(120%);
+  -ms-transform: translateY(120%);
+  -o-transform: translateY(120%);
+  -webkit-transition: transform 0.5s, opacity 1s;
+  -moz-transition: transform 0.5s, opacity 1s;
+  -ms-transition: transform 0.5s, opacity 1s;
+  -o-transition: transform 0.5s, opacity 1s;
+}
+
+.product:hover .btn {
+  transform: translateY(0);
+  opacity: 1;
+}

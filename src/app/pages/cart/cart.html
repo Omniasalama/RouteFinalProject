@@ -1,0 +1,116 @@
+<main class="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+  <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <div class="flex justify-between">
+        <h2 class="text-3xl font-bold">Shopping Cart</h2>
+        <button
+          (click)="clearCart()"
+          type="button"
+          class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        >
+          Clear cart
+        </button>
+      </div>
+      <h4 class="text-green-500 my-3">
+        Total Cart Price : {{ cartInter.totalCartPrice }} EGP
+      </h4>
+      <h5 class="text-green-500 my-3 cursor-pointer">
+        Total Items : {{ totalCartItems }}
+      </h5>
+      <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+        <!-- Products List -->
+        <div class="mx-auto w-full">
+          <!-- Loading State -->
+          @if (!isloadded) {
+            <div class="space-y-6">
+              @for (i of [1, 2, 3]; track i) {
+                <app-skeleton type="list-item"></app-skeleton>
+              }
+            </div>
+          }
+
+          <!-- Cart Items -->
+          @if (isloadded) {
+            <div class="space-y-6">
+              @if (cartInter.products.length && cartInter.products.length > 0) {
+            @for (product of cartInter.products; track product._id) {
+            <div
+              class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6 flex items-center justify-between"
+            >
+              <!-- Product Info -->
+              <div class="flex items-center gap-4">
+                <img
+                  [src]="product.product.imageCover"
+                  alt="{{ product.product.title }}"
+                  class="w-20 h-20 object-cover rounded"
+                />
+                <div>
+                  <h2
+                    class="text-2xl font-semibold text-gray-900 dark:text-white"
+                  >
+                    {{ product.product.title }}
+                  </h2>
+                  <span class="text-green-500 my-3 dark:text-gray-400">
+                    Price: {{ product.price }} EGP
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quantity Controls -->
+              <div class="flex items-center gap-2">
+                <button
+                  (click)="
+                    changeQuantity(product.product._id, product.count + 1)
+                  "
+                  type="button"
+                  class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                >
+                  +
+                </button>
+                <span>{{ product.count }}</span>
+                <button
+                  (click)="
+                    changeQuantity(product.product._id, product.count - 1)
+                  "
+                  type="button"
+                  class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                >
+                  -
+                </button>
+                <button
+                  (click)="removeProduct(product.product._id)"
+                  type="button"
+                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            }
+            <div class="flex justify-between">
+              <button
+                routerLink="/products"
+                type="button"
+                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+              >
+                Continue Shopping
+              </button>
+              <button
+                [routerLink]="['/address', cartId]"
+                type="button"
+                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+              >
+                Checkout
+              </button>
+            </div>
+              } @else {
+                <p class="text-gray-500 dark:text-gray-400">Your cart is empty.</p>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,261 @@
+<div class="h-full bg-white dark:bg-gray-900">
+  <div class="mx-auto">
+    <div class="flex justify-center px-6 py-12">
+      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <!-- Form Container -->
+        <div
+          class="w-full lg:w-7/12 bg-white dark:bg-gray-700 p-5 rounded-lg lg:rounded-l-none"
+        >
+          <div class="heading text-center pt-6">
+            <h3
+              class="py-2 text-2xl font-bold text-gray-800 dark:text-white ml-28"
+            >
+              Login
+            </h3>
+
+            <h5 class="py-4 text-lg text-gray-500 ml-28">
+              Don’t have an account?
+              <a
+                [routerLink]="['/register']"
+                class="text-green-500 hover:underline"
+              >
+                Sign up
+              </a>
+            </h5>
+          </div>
+
+          @if (errmess!='') {
+          <div
+            class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert"
+          >
+            <svg
+              class="shrink-0 inline w-4 h-4 me-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 
+                0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 
+                15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                1 0 0 1 0-2h2a1 1 0 0 1 1 
+                1v4h1a1 1 0 0 1 0 2Z"
+              />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">{{ errmess }}</span
+              >.
+            </div>
+          </div>
+          }
+
+          <form
+            class="max-w-sm mx-auto"
+            [formGroup]="loginform"
+            (ngSubmit)="submit()"
+          >
+            <!-- Email -->
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                formControlName="email"
+                type="email"
+                id="floating_mail"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-black focus:outline-none focus:ring-0 focus:border-black peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_mail"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-green-500 peer-focus:dark:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Mail
+              </label>
+
+              @if (loginform.controls['email'].errors &&
+              loginform.controls['email'].touched) {
+              <div
+                class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 
+                       9.5A9.51 9.51 0 0 0 10 .5ZM9.5 
+                       4a1.5 1.5 0 1 1 0 3 
+                       1.5 1.5 0 0 1 0-3ZM12 
+                       15H8a1 1 0 0 1 0-2h1v-3H8a1 
+                       1 0 0 1 0-2h2a1 1 0 0 1 1 
+                       1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <div>
+                  <span class="font-medium"
+                    >Ensure that these requirements are met:</span
+                  >
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if (loginform.controls['email'].hasError('required')) {
+                    <li>Email is required</li>
+                    } @if (loginform.controls['email'].hasError('email')) {
+                    <li>Please enter a valid email</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                formControlName="password"
+                [type]="showPassword ? 'text' : 'password'"
+                id="floating_password"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-black focus:outline-none focus:ring-0 focus:border-black peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_password"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-green-500 peer-focus:dark:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Password
+              </label>
+
+              <!-- Eye Toggle -->
+              <button
+                type="button"
+                (click)="togglePassword()"
+                class="absolute right-3 top-3 text-gray-500 hover:text-black"
+              >
+                @if (showPassword) {
+                <!-- Eye open -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 
+                         010-.639C3.423 7.51 7.36 4.5 
+                         12 4.5c4.638 0 8.573 3.007 
+                         9.963 7.178.07.207.07.431 
+                         0 .639C20.577 16.49 16.64 
+                         19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 
+                         0 016 0z"
+                  />
+                </svg>
+                } @else {
+                <!-- Eye closed -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.98 8.223A10.477 10.477 
+                         0 001.934 12C3.226 16.338 
+                         7.244 19.5 12 19.5c.993 0 
+                         1.953-.138 2.863-.395M6.228 
+                         6.228A10.45 10.45 0 0112 
+                         4.5c4.756 0 8.773 3.162 
+                         10.065 7.5a10.523 10.523 
+                         0 01-4.293 5.774M6.228 
+                         6.228L3 3m3.228 3.228l3.65 
+                         3.65m7.894 7.894L21 
+                         21m-3.228-3.228l-3.65-3.65"
+                  />
+                </svg>
+                }
+              </button>
+
+              @if (loginform.controls['password'].errors &&
+              loginform.controls['password'].touched) {
+              <div
+                class="flex p-4 mt-3 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 
+                       9.5A9.51 9.51 0 0 0 10 
+                       .5ZM9.5 4a1.5 1.5 0 1 
+                       1 0 3 1.5 1.5 0 0 1 
+                       0-3ZM12 15H8a1 1 0 0 
+                       1 0-2h1v-3H8a1 1 0 
+                       0 1 0-2h2a1 1 0 0 
+                       1 1 1v4h1a1 1 0 0 
+                       1 0 2Z"
+                  />
+                </svg>
+                <div>
+                  <span class="font-medium"
+                    >Ensure that these requirements are met:</span
+                  >
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if (loginform.controls['password'].hasError('required')) {
+                    <li>Password is required</li>
+                    } @if (loginform.controls['password'].hasError('minlength'))
+                    {
+                    <li>At least 6 characters</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+              }
+            </div>
+
+            <!-- Submit -->
+            <div class="flex justify-center">
+              <button
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
+              >
+                <span
+                  class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent"
+                >
+                  Login
+                </span>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button
+                [routerLink]="['/forgetPassword']"
+                class="relative inline-flex items-center justify-center p-3 mb-10 me-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-xl group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-400 group-hover:to-lime-400 hover:bg-white dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
+              >
+                Forget Password?
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

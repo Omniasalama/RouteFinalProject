@@ -1,0 +1,7 @@
+.btn-register{
+  padding: .625rem 1.25rem;
+  border-radius: .375rem;
+  background: white;
+  transition: all .075s ease-in;
+}
+.btn-register:hover { background: transparent; }
